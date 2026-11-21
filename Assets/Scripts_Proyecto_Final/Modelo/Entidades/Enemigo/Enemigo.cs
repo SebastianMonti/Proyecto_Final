@@ -62,4 +62,7 @@ public abstract class Enemigo : Entidad
     {
         // Vacío por defecto; Enemigo_Avaro lo sobreescribe
     }
+    public bool Esta_Vivo => Puntos_de_Vida > 0;
+
+
 }

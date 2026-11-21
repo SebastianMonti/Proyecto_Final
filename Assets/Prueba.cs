@@ -1,15 +1,20 @@
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class Prueba : MonoBehaviour
 {
     private Controlador_Teclas controlador;
     private Controlador_Explosiones controladorExplosiones;
+    private Ronda_Manager manager;
 
     void Start()
-    {
+    {   
         Tablero tablero = new Tablero();
         Estadisticas estadisticas = new Estadisticas();
         Controlador_Entidades controlador_Entidades = new Controlador_Entidades(estadisticas);
+        Generador_Monedas generadorMonedas = new Generador_Monedas(tablero, new System.Random(), estadisticas);
+        Fabrica_Enemigos fabrica = new Fabrica_Enemigos(tablero, generadorMonedas, controlador_Entidades);
+        Cargador_Rondas cargador = new Cargador_Rondas(fabrica, tablero);
 
         // Personaje
         Celda celda = tablero.Obtener_Celda(4, 4);
@@ -31,19 +36,24 @@ public class Prueba : MonoBehaviour
             new System.Random(),
             estadisticas
         );
-        Celda celda_Enemigo1 = tablero.Obtener_Celda(6, 4); // Cerca del personaje para probar rápido
+      /*  Celda celda_Enemigo1 = tablero.Obtener_Celda(6, 4); // Cerca del personaje para probar rápido
         Enemigo_Basico enemigo1 = new Enemigo_Basico(
             celda_Enemigo1,
             tablero,
             generador_Monedas,
             controlador_Entidades
         );
+      */
+
+        manager = new Ronda_Manager(cargador, estadisticas);
+        manager.Iniciar_Partida();
     }
 
     void Update()
     {
         controlador.Verificar_Tecla_Presionada();
         controladorExplosiones.Actualizar(Time.deltaTime);
+        manager.Actualizar(Time.deltaTime);
     }
 }
 
