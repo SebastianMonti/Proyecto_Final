@@ -13,14 +13,16 @@ public class Prueba : MonoBehaviour
         Estadisticas estadisticas = new Estadisticas();
         Controlador_Entidades controlador_Entidades = new Controlador_Entidades(estadisticas);
         Generador_Monedas generadorMonedas = new Generador_Monedas(tablero, new System.Random(), estadisticas);
-        Fabrica_Enemigos fabrica = new Fabrica_Enemigos(tablero, generadorMonedas, controlador_Entidades);
-        Cargador_Rondas cargador = new Cargador_Rondas(fabrica, tablero);
+        
 
         // Personaje
         Celda celda = tablero.Obtener_Celda(4, 4);
         Personaje personaje = new Personaje(celda, tablero, controlador_Entidades); // Si tu Personaje recibe controlador_Entidades, pasáselo acá
         celda.Establecer_Entidad(personaje);
         controlador = new Controlador_Teclas(personaje.obtener_presentador());
+
+        Fabrica_Enemigos fabrica = new Fabrica_Enemigos(tablero, generadorMonedas, controlador_Entidades, personaje);
+        Cargador_Rondas cargador = new Cargador_Rondas(fabrica, tablero);
 
         // Explosiones automáticas
         controladorExplosiones = new Controlador_Explosiones(
