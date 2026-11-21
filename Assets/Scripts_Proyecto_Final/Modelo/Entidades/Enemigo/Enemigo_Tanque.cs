@@ -11,7 +11,7 @@ public class Enemigo_Tanque : Enemigo
         Generador_Monedas generadorMonedas,
         Controlador_Entidades controladorEntidades)
     {
-        Puntos_de_Vida = 100; // Mucha más vida que el básico (20)
+        Puntos_de_Vida = 30; // Mucha más vida que el básico (20)
         celda_actual = celdaInicial;
         celda_actual.Establecer_Entidad(this);
 
