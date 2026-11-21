@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 
@@ -97,6 +98,37 @@ using System.Collections.Generic;
 
             return null; // El tablero está completamente lleno
         }
+    public Celda Obtener_Celda_Moneda_Mas_Cercana(Celda origen)
+    {
+        if (origen == null || tablero == null)
+        {
+            return null;
+        }
+
+        Celda masCercana = null;
+        int menorDistancia = int.MaxValue;
+
+        foreach (Celda candidata in tablero)
+        {
+            if (candidata == null) continue;
+
+            bool tieneMoneda = candidata.Obtener_Entidades().Exists(e => e is Moneda);
+
+            if (tieneMoneda)
+            {
+                int distancia = Math.Abs(candidata.Obtener_Posicion_X() - origen.Obtener_Posicion_X())
+                              + Math.Abs(candidata.Obtener_Posicion_Z() - origen.Obtener_Posicion_Z());
+
+                if (distancia < menorDistancia)
+                {
+                    menorDistancia = distancia;
+                    masCercana = candidata;
+                }
+            }
+        }
+
+        return masCercana;
+    }
     public List<Celda> Obtener_Celdas_Vecinas(Celda celda)
         {
             List<Celda> vecinas = new List<Celda>();
