@@ -1,36 +1,42 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Vista_Personaje : Vista_Entidades
 {
-    [SerializeField] private GameObject prefabVisual;
-    private GameObject referenciaVisual;
+    private GameObject modeloVisual;
     private Presentador_Personaje presentador;
+    private Controlador_Teclas controladorTeclas;
 
-    public Vista_Personaje(Presentador_Personaje p)
+    private void Awake()
     {
-        presentador = p;
-       
-        referenciaVisual = Instantiate(Resources.Load("Jugador")) as GameObject;
-        Debug.Log(referenciaVisual.gameObject.name);
-        //Debug.Log(referenciaVisual.GetComponent<ControladorTeclas2>());
-        //referenciaVisual.GetComponent<Controlador_Teclas>().Inciiar(p);
+        GameObject prefab = Resources.Load<GameObject>("Jugador");
 
+        if (prefab != null)
+        {
+            modeloVisual = Instantiate(prefab, transform);
+            modeloVisual.transform.localPosition = Vector3.zero;
+        }
+        else
+        {
+            Debug.LogError("No se encontró el prefab 'Jugador' en Assets/Resources.", this);
+        }
     }
 
-    public void crear() 
+    public void Conectar_Presentador(Presentador_Personaje presentador)
     {
-        Debug.Log(referenciaVisual.GetComponent<ControladorTeclas2>());
-        referenciaVisual.GetComponent<ControladorTeclas2>();
+        this.presentador = presentador
+            ?? throw new System.ArgumentNullException(nameof(presentador));
+
+        controladorTeclas = new Controlador_Teclas(this.presentador);
+    }
+
+    private void Update()
+    {
+        controladorTeclas?.Verificar_Tecla_Presionada();
     }
 
     public void Dibujar(int posX, int posZ)
     {
-       
-
-        Vector3 posicion = new Vector3(posX, 0, posZ);
-        referenciaVisual.transform.position = posicion;
-
+        transform.position = new Vector3(posX, 0f, posZ);
     }
 
     public override void Mover(int posX, int posZ)
@@ -40,34 +46,7 @@ public class Vista_Personaje : Vista_Entidades
 
     public override void Eliminar()
     {
-        if (referenciaVisual != null)
-        {
-            Destroy(referenciaVisual);
-            referenciaVisual = null;
-        }
-    }
-}
-/*
-using UnityEngine;
-
-public class Vista_Personaje : Vista_Entidades
-{
-    private GameObject referenciaVisual;
-    private Presentador_Entidades presentador;
-    public Vista_Personaje(Presentador_Entidades pres)
-    {
-        presentador = pres;
-        referenciaVisual = Instantiate(Resources.Load("Jugador")) as GameObject;
-        referenciaVisual.GetComponent<ManejadorTeclas>().SetVistaJugador(this);
-    }
-    public override void Mover(int posX, int posZ)
-    {
-        transform.position = new Vector3(posX, 0, posZ);
-    }
-
-    public override void Eliminar()
-    {
         Destroy(gameObject);
     }
 }
-*/
+

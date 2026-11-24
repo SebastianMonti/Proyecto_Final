@@ -1,13 +1,19 @@
+using UnityEngine;
+
 public class Presentador_Personaje : Presentador_Entidades
 {
     private readonly Controlador_Movimiento controladorMovimiento;
-   
 
     public Presentador_Personaje(Personaje jugador)
     {
-        vista = new Vista_Personaje(this);
-        entidad = jugador;
-        controladorMovimiento = jugador.Obtener_Controlador_Movimiento();
+        GameObject go = new GameObject("Personaje_Obj");
+        Vista_Personaje vistaPersonaje = go.AddComponent<Vista_Personaje>();
+        vistaPersonaje.Conectar_Presentador(this);
+
+        this.vista = vistaPersonaje;
+        this.entidad = jugador;
+        this.controladorMovimiento = jugador.Obtener_Controlador_Movimiento();
+
         ActualizarVista();
     }
 
@@ -37,3 +43,5 @@ public class Presentador_Personaje : Presentador_Entidades
         vista.Eliminar();
     }
 }
+
+

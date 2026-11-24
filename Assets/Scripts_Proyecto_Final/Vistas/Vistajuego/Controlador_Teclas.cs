@@ -43,11 +43,5 @@ public class Controlador_Teclas: MonoBehaviour
             new Tecla_Derecha()
         };
     }
-
-
-    /*private void Update()
-    {
-        Verificar_Tecla_Presionada();
-    }*/
 }
 
