@@ -15,7 +15,7 @@ public class Banco_Preguntas_Local : IProveedor_Preguntas
 
     public void Obtener(int dificultad, Action<Pregunta> alTerminar)
     {
-        // Las más cercanas a la dificultad pedida, con un margen para que haya variedad
+        
         int mejor = preguntas.Min(p => Math.Abs(p.dificultad - dificultad));
         var candidatas = preguntas
             .Where(p => Math.Abs(p.dificultad - dificultad) <= mejor + 3)

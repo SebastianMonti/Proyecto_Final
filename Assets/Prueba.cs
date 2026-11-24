@@ -7,6 +7,10 @@ public class Prueba : MonoBehaviour
     private Controlador_Explosiones controladorExplosiones;
     private Ronda_Manager manager;
 
+    Controlador_Trivia trivia;
+    Estado_Trivia ultimoEstado = Estado_Trivia.Inactiva;
+
+
     void Start()
     {   
         Tablero tablero = new Tablero();
@@ -38,17 +42,19 @@ public class Prueba : MonoBehaviour
             new System.Random(),
             estadisticas
         );
-      /*  Celda celda_Enemigo1 = tablero.Obtener_Celda(6, 4); // Cerca del personaje para probar rápido
-        Enemigo_Basico enemigo1 = new Enemigo_Basico(
-            celda_Enemigo1,
-            tablero,
-            generador_Monedas,
-            controlador_Entidades
-        );
-      */
-
-        manager = new Ronda_Manager(cargador, estadisticas);
+        /*  Celda celda_Enemigo1 = tablero.Obtener_Celda(6, 4); // Cerca del personaje para probar rápido
+          Enemigo_Basico enemigo1 = new Enemigo_Basico(
+              celda_Enemigo1,
+              tablero,
+              generador_Monedas,
+              controlador_Entidades
+          );
+        */
+        trivia = new Controlador_Trivia(new Banco_Preguntas_Local());
+        manager = new Ronda_Manager(cargador, estadisticas, trivia);
         manager.Iniciar_Partida();
+
+        
     }
 
     void Update()
@@ -56,6 +62,57 @@ public class Prueba : MonoBehaviour
         controlador.Verificar_Tecla_Presionada();
         controladorExplosiones.Actualizar(Time.deltaTime);
         manager.Actualizar(Time.deltaTime);
+
+        //para probar!
+        if (manager.Fase == Fase.Trivia) Probar_Trivia();
+    }
+
+    void Probar_Trivia()
+    {
+        if (trivia.Estado != ultimoEstado)
+        {
+            ultimoEstado = trivia.Estado;
+            Avisar_Estado();
+        }
+
+        if (trivia.Estado == Estado_Trivia.Decidiendo)
+        {
+            if (Input.GetKeyDown(KeyCode.P)) trivia.Participar();
+            if (Input.GetKeyDown(KeyCode.O)) trivia.No_Participar();
+        }
+        else if (trivia.Estado == Estado_Trivia.Respondiendo)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1)) trivia.Responder(0);
+            if (Input.GetKeyDown(KeyCode.Alpha2)) trivia.Responder(1);
+            if (Input.GetKeyDown(KeyCode.Alpha3)) trivia.Responder(2);
+            if (Input.GetKeyDown(KeyCode.Alpha4)) trivia.Responder(3);
+        }
+        else if (trivia.Estado == Estado_Trivia.Resultado && Input.GetKeyDown(KeyCode.Return))
+        {
+            manager.Terminar_Trivia();
+        }
+    }
+
+    void Avisar_Estado()
+    {
+        switch (trivia.Estado)
+        {
+            case Estado_Trivia.Decidiendo:
+                Debug.Log($"[Trivia] Ganaste {trivia.Ganancias} esta ronda. P = participar, O = no participar");
+                break;
+            case Estado_Trivia.Respondiendo:
+                MostrarPregunta();
+                break;
+            case Estado_Trivia.Resultado:
+                Debug.Log($"[Trivia] Ganancias {trivia.Ganancias} -> {trivia.GananciasFinales} (ajuste {trivia.Ajuste()}). Enter para continuar");
+                break;
+        }
+    }
+
+    void MostrarPregunta()
+    {
+        var p = trivia.Pregunta_Actual;
+        if (p != null) Debug.Log($"{p.texto}  1){p.opciones[0]} 2){p.opciones[1]} 3){p.opciones[2]} 4){p.opciones[3]}");
     }
 }
 

@@ -10,18 +10,21 @@ public class Ronda_Manager
 
     readonly Cargador_Rondas cargador;
     readonly Estadisticas stats;
+    readonly Controlador_Trivia trivia;
     int ultimoSegundoMostrado = -1;
     public int Numero => numero;
     public Ronda Ronda_Actual => ronda;
 
     Ronda ronda;
     int numero = 1;
+    int saldoInicialRonda;
     public Fase Fase { get; private set; }
 
-    public Ronda_Manager(Cargador_Rondas cargador, Estadisticas stats)
+    public Ronda_Manager(Cargador_Rondas cargador, Estadisticas stats, Controlador_Trivia trivia)
     {
         this.cargador = cargador;
         this.stats = stats;
+        this.trivia = trivia;
     }
 
     public void Iniciar_Partida()
@@ -33,6 +36,7 @@ public class Ronda_Manager
     public void Iniciar_Ronda()
     {
         DatosRonda datos = cargador.ObtenerDatosRonda(numero);
+        saldoInicialRonda = stats.Obtener_Monedas();
         ronda = new Ronda(datos, DURACION_BASE + stats.tiempo_extra);
 
         Fase = Fase.Batalla;
@@ -51,13 +55,17 @@ public class Ronda_Manager
             Debug.Log($"[Ronda {numero}] Tiempo: {segundos}s | Vivos: {ronda.EnemigosVivos}");
         }
 
-        if (ronda.Terminada)
-        {
-            Debug.Log($"Fin de la ronda {numero}");
-            ronda.Limpiar_Enemigos();
-            Avanzar_Ronda();      // temporal: acá después van trivia y tienda
-            return;
-        }
+        
+        
+            if (ronda.Terminada)
+            {
+                ronda.Limpiar_Enemigos();
+                Fase = Fase.Trivia;
+                int ganancias = stats.Obtener_Monedas() -saldoInicialRonda;   // lo ganado en la ronda
+                trivia.Iniciar(ganancias, numero);
+                return;
+            }
+        
 
         if (ronda.SinEnemigos)
         {
@@ -85,5 +93,11 @@ public class Ronda_Manager
         Iniciar_Ronda();
     }
 
-    
+    public void Terminar_Trivia()
+    {
+        stats.Sumar_Monedas(trivia.Ajuste());
+        trivia.Cerrar();
+        Avanzar_Ronda();     // más adelante acá va la tienda
+    }
+
 }

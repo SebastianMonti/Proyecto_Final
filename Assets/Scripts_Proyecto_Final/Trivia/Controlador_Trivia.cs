@@ -5,14 +5,14 @@ public class Controlador_Trivia
     readonly IProveedor_Preguntas proveedor;
     int dificultad;
 
-    private Estado_Trivia Estado = Estado_Trivia.Inactiva;
-    private int Ganancias;         // G: lo ganado en la ronda
-    private int GananciasFinales;   // 2G, G/2 o G
+    public Estado_Trivia Estado = Estado_Trivia.Inactiva;
+    public int Ganancias;         // G: lo ganado en la ronda
+    public int GananciasFinales;   // 2G, G/2 o G
     private bool Participo;
     private bool Acerto;
-    private Pregunta Pregunta_Actual;
+    public Pregunta Pregunta_Actual;
 
-    // Cuánto hay que sumar (o restar) al saldo, que ya incluye G
+    // Cuánto hay que sumar (o restar) al saldo
     public int Ajuste (){
         return GananciasFinales - Ganancias;
     }
@@ -52,7 +52,8 @@ public class Controlador_Trivia
 
     public void Responder(int indice)
     {
-        if (Estado != Estado_Trivia.Respondiendo) return;
+        if (Estado != Estado_Trivia.Respondiendo) 
+            return;
         Acerto = indice == Pregunta_Actual.correcta;
         GananciasFinales = Acerto ? Ganancias * 2 : Ganancias / 2;
         Estado = Estado_Trivia.Resultado;
