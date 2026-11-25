@@ -8,8 +8,8 @@ public class Controlador_Trivia
     public Estado_Trivia Estado = Estado_Trivia.Inactiva;
     public int Ganancias;         // G: lo ganado en la ronda
     public int GananciasFinales;   // 2G, G/2 o G
-    private bool Participo;
-    private bool Acerto;
+    public bool Participo;
+    public bool Acerto;
     public Pregunta Pregunta_Actual;
 
     // Cuánto hay que sumar (o restar) al saldo

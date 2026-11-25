@@ -5,9 +5,10 @@ public class Prueba : MonoBehaviour
     private Controlador_Explosiones controladorExplosiones;
     private Ronda_Manager manager;
 
-    private Controlador_Trivia trivia;
-    private Estado_Trivia ultimoEstado = Estado_Trivia.Inactiva;
+    Controlador_Trivia trivia;
+    Estado_Trivia ultimoEstado = Estado_Trivia.Inactiva;
 
+    [SerializeField] private Vinculo_Vistas_Presentador vinculoVistas;//para q unity lo asigne desde el insp
     void Start()
     {
         Tablero tablero = new Tablero();
@@ -30,22 +31,45 @@ public class Prueba : MonoBehaviour
             controlador_Entidades
         );
 
+        // Enemigo
+        Generador_Monedas generador_Monedas = new Generador_Monedas(
+            tablero,
+            new System.Random(),
+            estadisticas
+        );
+        /*  Celda celda_Enemigo1 = tablero.Obtener_Celda(6, 4); // Cerca del personaje para probar r�pido
+          Enemigo_Basico enemigo1 = new Enemigo_Basico(
+              celda_Enemigo1,
+              tablero,
+              generador_Monedas,
+              controlador_Entidades
+          );
+        */
+
         trivia = new Controlador_Trivia(new Banco_Preguntas_Local());
         manager = new Ronda_Manager(cargador, estadisticas, trivia);
-        manager.Iniciar_Partida();
+
+        if (vinculoVistas != null)
+        {
+            vinculoVistas.Inicializar(manager);
+        }
+        
+       // manager.Iniciar_Partida();
+
+        
     }
 
     void Update()
     {
-        manager.Actualizar(Time.deltaTime);
+        controlador.Verificar_Tecla_Presionada();
+        controladorExplosiones.Actualizar(Time.deltaTime);
+        manager?.Actualizar(Time.deltaTime);
 
-        if (manager.Fase == Fase.Trivia)
+        //para probar!
+        if (manager != null)
         {
-            Probar_Trivia();
-        }
-        else
-        {
-            controladorExplosiones.Actualizar(Time.deltaTime);
+            manager.Actualizar(Time.deltaTime);
+            if (manager.Fase == Fase.Trivia) Probar_Trivia();
         }
     }
 

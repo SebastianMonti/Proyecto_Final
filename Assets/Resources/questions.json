@@ -1,0 +1,1104 @@
+{
+  "preguntas": [
+    {
+      "texto": "What is the capital of Argentina?",
+      "opciones": [
+        "Córdoba",
+        "Buenos Aires",
+        "Rosario",
+        "Mendoza"
+      ],
+      "correcta": 1,
+      "dificultad": 1
+    },
+    {
+      "texto": "How many days are there in a week?",
+      "opciones": [
+        "5",
+        "7",
+        "6",
+        "8"
+      ],
+      "correcta": 1,
+      "dificultad": 1
+    },
+    {
+      "texto": "How many legs does a spider have?",
+      "opciones": [
+        "6",
+        "4",
+        "10",
+        "8"
+      ],
+      "correcta": 3,
+      "dificultad": 2
+    },
+    {
+      "texto": "On which continent is Argentina located?",
+      "opciones": [
+        "South America",
+        "Europe",
+        "Africa",
+        "Asia"
+      ],
+      "correcta": 0,
+      "dificultad": 2
+    },
+    {
+      "texto": "How many sides does a hexagon have?",
+      "opciones": [
+        "5",
+        "7",
+        "6",
+        "8"
+      ],
+      "correcta": 2,
+      "dificultad": 3
+    },
+    {
+      "texto": "What is 7 × 8?",
+      "opciones": [
+        "54",
+        "56",
+        "48",
+        "63"
+      ],
+      "correcta": 1,
+      "dificultad": 3
+    },
+    {
+      "texto": "How many players from a soccer team are on the field at the same time?",
+      "opciones": [
+        "9",
+        "11",
+        "10",
+        "12"
+      ],
+      "correcta": 1,
+      "dificultad": 4
+    },
+    {
+      "texto": "Which gas do we need to breathe to live?",
+      "opciones": [
+        "Helium",
+        "Oxygen",
+        "Hydrogen",
+        "Carbon dioxide"
+      ],
+      "correcta": 1,
+      "dificultad": 4
+    },
+    {
+      "texto": "What is the largest ocean in the world?",
+      "opciones": [
+        "Atlantic",
+        "Indian",
+        "Pacific",
+        "Arctic"
+      ],
+      "correcta": 2,
+      "dificultad": 5
+    },
+    {
+      "texto": "What is the largest animal in the world?",
+      "opciones": [
+        "African elephant",
+        "Blue whale",
+        "Whale shark",
+        "Giraffe"
+      ],
+      "correcta": 1,
+      "dificultad": 5
+    },
+    {
+      "texto": "How many colors are there in a rainbow?",
+      "opciones": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "correcta": 2,
+      "dificultad": 6
+    },
+    {
+      "texto": "Which planet is known as the Red Planet?",
+      "opciones": [
+        "Mars",
+        "Venus",
+        "Jupiter",
+        "Mercury"
+      ],
+      "correcta": 0,
+      "dificultad": 6
+    },
+    {
+      "texto": "Who wrote Don Quixote?",
+      "opciones": [
+        "Lope de Vega",
+        "Miguel de Cervantes",
+        "Francisco de Quevedo",
+        "Jorge Luis Borges"
+      ],
+      "correcta": 1,
+      "dificultad": 7
+    },
+    {
+      "texto": "What is the longest river in South America?",
+      "opciones": [
+        "Paraná",
+        "Amazon",
+        "Orinoco",
+        "Magdalena"
+      ],
+      "correcta": 1,
+      "dificultad": 7
+    },
+    {
+      "texto": "Who painted the Mona Lisa?",
+      "opciones": [
+        "Leonardo da Vinci",
+        "Michelangelo",
+        "Raphael",
+        "Sandro Botticelli"
+      ],
+      "correcta": 0,
+      "dificultad": 8
+    },
+    {
+      "texto": "Which metal is liquid at room temperature?",
+      "opciones": [
+        "Lead",
+        "Mercury",
+        "Aluminum",
+        "Copper"
+      ],
+      "correcta": 1,
+      "dificultad": 8
+    },
+    {
+      "texto": "What is the longest bone in the human body?",
+      "opciones": [
+        "Humerus",
+        "Tibia",
+        "Femur",
+        "Fibula"
+      ],
+      "correcta": 2,
+      "dificultad": 9
+    },
+    {
+      "texto": "Which country is shaped like a boot?",
+      "opciones": [
+        "Italy",
+        "Spain",
+        "Greece",
+        "Portugal"
+      ],
+      "correcta": 0,
+      "dificultad": 9
+    },
+    {
+      "texto": "In what year did humans first land on the Moon?",
+      "opciones": [
+        "1969",
+        "1965",
+        "1972",
+        "1959"
+      ],
+      "correcta": 0,
+      "dificultad": 10
+    },
+    {
+      "texto": "What is the largest country in the world by area?",
+      "opciones": [
+        "Canada",
+        "China",
+        "United States",
+        "Russia"
+      ],
+      "correcta": 3,
+      "dificultad": 10
+    },
+    {
+      "texto": "What is the chemical symbol for gold?",
+      "opciones": [
+        "Ag",
+        "Or",
+        "Go",
+        "Au"
+      ],
+      "correcta": 3,
+      "dificultad": 11
+    },
+    {
+      "texto": "Approximately how many bones does an adult have?",
+      "opciones": [
+        "106",
+        "306",
+        "206",
+        "412"
+      ],
+      "correcta": 2,
+      "dificultad": 11
+    },
+    {
+      "texto": "Which scientist formulated the theory of relativity?",
+      "opciones": [
+        "Isaac Newton",
+        "Niels Bohr",
+        "Galileo Galilei",
+        "Albert Einstein"
+      ],
+      "correcta": 3,
+      "dificultad": 12
+    },
+    {
+      "texto": "What is the official currency of Japan?",
+      "opciones": [
+        "Won",
+        "Yuan",
+        "Yen",
+        "Rupee"
+      ],
+      "correcta": 2,
+      "dificultad": 12
+    },
+    {
+      "texto": "How many hearts does an octopus have?",
+      "opciones": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "correcta": 2,
+      "dificultad": 13
+    },
+    {
+      "texto": "Which gas makes up most of Earth's atmosphere?",
+      "opciones": [
+        "Nitrogen",
+        "Oxygen",
+        "Carbon dioxide",
+        "Argon"
+      ],
+      "correcta": 0,
+      "dificultad": 13
+    },
+    {
+      "texto": "Which programming language was created by Guido van Rossum?",
+      "opciones": [
+        "Java",
+        "Ruby",
+        "Python",
+        "C#"
+      ],
+      "correcta": 2,
+      "dificultad": 14
+    },
+    {
+      "texto": "What is the capital of Australia?",
+      "opciones": [
+        "Canberra",
+        "Sydney",
+        "Melbourne",
+        "Perth"
+      ],
+      "correcta": 0,
+      "dificultad": 14
+    },
+    {
+      "texto": "Which chemical element has the symbol Fe?",
+      "opciones": [
+        "Iron",
+        "Fluorine",
+        "Phosphorus",
+        "Francium"
+      ],
+      "correcta": 0,
+      "dificultad": 15
+    },
+    {
+      "texto": "What is the largest planet in the Solar System?",
+      "opciones": [
+        "Saturn",
+        "Neptune",
+        "Jupiter",
+        "Uranus"
+      ],
+      "correcta": 2,
+      "dificultad": 15
+    },
+    {
+      "texto": "Who wrote One Hundred Years of Solitude?",
+      "opciones": [
+        "Mario Vargas Llosa",
+        "Gabriel García Márquez",
+        "Julio Cortázar",
+        "Isabel Allende"
+      ],
+      "correcta": 1,
+      "dificultad": 16
+    },
+    {
+      "texto": "In which country is Machu Picchu located?",
+      "opciones": [
+        "Bolivia",
+        "Peru",
+        "Ecuador",
+        "Colombia"
+      ],
+      "correcta": 1,
+      "dificultad": 16
+    },
+    {
+      "texto": "What is the unit of force in the International System of Units?",
+      "opciones": [
+        "Joule",
+        "Pascal",
+        "Newton",
+        "Watt"
+      ],
+      "correcta": 2,
+      "dificultad": 17
+    },
+    {
+      "texto": "Who composed the Ninth Symphony?",
+      "opciones": [
+        "Wolfgang Amadeus Mozart",
+        "Johann Sebastian Bach",
+        "Franz Schubert",
+        "Ludwig van Beethoven"
+      ],
+      "correcta": 3,
+      "dificultad": 17
+    },
+    {
+      "texto": "What is the largest organ in the human body?",
+      "opciones": [
+        "Skin",
+        "Liver",
+        "Lung",
+        "Small intestine"
+      ],
+      "correcta": 0,
+      "dificultad": 18
+    },
+    {
+      "texto": "What does the acronym HTML stand for?",
+      "opciones": [
+        "High Text Machine Language",
+        "Hyper Transfer Markup Language",
+        "HyperText Markup Language",
+        "HyperText Making Language"
+      ],
+      "correcta": 2,
+      "dificultad": 18
+    },
+    {
+      "texto": "In what year did World War II begin?",
+      "opciones": [
+        "1914",
+        "1941",
+        "1939",
+        "1945"
+      ],
+      "correcta": 2,
+      "dificultad": 19
+    },
+    {
+      "texto": "What is the capital of Canada?",
+      "opciones": [
+        "Toronto",
+        "Montreal",
+        "Vancouver",
+        "Ottawa"
+      ],
+      "correcta": 3,
+      "dificultad": 19
+    },
+    {
+      "texto": "What is the most abundant element in the universe?",
+      "opciones": [
+        "Helium",
+        "Hydrogen",
+        "Oxygen",
+        "Carbon"
+      ],
+      "correcta": 1,
+      "dificultad": 20
+    },
+    {
+      "texto": "Who painted The Starry Night?",
+      "opciones": [
+        "Claude Monet",
+        "Vincent van Gogh",
+        "Pablo Picasso",
+        "Paul Cézanne"
+      ],
+      "correcta": 1,
+      "dificultad": 20
+    },
+    {
+      "texto": "What is the approximate value of pi to two decimal places?",
+      "opciones": [
+        "3.14",
+        "3.41",
+        "2.71",
+        "3.24"
+      ],
+      "correcta": 0,
+      "dificultad": 21
+    },
+    {
+      "texto": "Which scientist discovered penicillin?",
+      "opciones": [
+        "Louis Pasteur",
+        "Marie Curie",
+        "Robert Koch",
+        "Alexander Fleming"
+      ],
+      "correcta": 3,
+      "dificultad": 21
+    },
+    {
+      "texto": "What is the longest river in Europe?",
+      "opciones": [
+        "Danube",
+        "Rhine",
+        "Volga",
+        "Seine"
+      ],
+      "correcta": 2,
+      "dificultad": 22
+    },
+    {
+      "texto": "How many bits are in a byte?",
+      "opciones": [
+        "8",
+        "4",
+        "16",
+        "32"
+      ],
+      "correcta": 0,
+      "dificultad": 22
+    },
+    {
+      "texto": "Who was the first human to travel into space?",
+      "opciones": [
+        "Neil Armstrong",
+        "Alan Shepard",
+        "Buzz Aldrin",
+        "Yuri Gagarin"
+      ],
+      "correcta": 3,
+      "dificultad": 23
+    },
+    {
+      "texto": "Which data structure follows the LIFO policy?",
+      "opciones": [
+        "Queue",
+        "Stack",
+        "Linked list",
+        "Tree"
+      ],
+      "correcta": 1,
+      "dificultad": 23
+    },
+    {
+      "texto": "What is the capital of Turkey?",
+      "opciones": [
+        "Istanbul",
+        "Izmir",
+        "Antalya",
+        "Ankara"
+      ],
+      "correcta": 3,
+      "dificultad": 24
+    },
+    {
+      "texto": "Which vitamin is primarily obtained through exposure to sunlight?",
+      "opciones": [
+        "Vitamin A",
+        "Vitamin C",
+        "Vitamin B12",
+        "Vitamin D"
+      ],
+      "correcta": 3,
+      "dificultad": 24
+    },
+    {
+      "texto": "In what year did the Berlin Wall fall?",
+      "opciones": [
+        "1989",
+        "1985",
+        "1987",
+        "1991"
+      ],
+      "correcta": 0,
+      "dificultad": 25
+    },
+    {
+      "texto": "What is the chemical symbol for sodium?",
+      "opciones": [
+        "So",
+        "Sd",
+        "Na",
+        "S"
+      ],
+      "correcta": 2,
+      "dificultad": 25
+    },
+    {
+      "texto": "Which Greek philosopher was Alexander the Great's teacher?",
+      "opciones": [
+        "Plato",
+        "Aristotle",
+        "Socrates",
+        "Epicurus"
+      ],
+      "correcta": 1,
+      "dificultad": 26
+    },
+    {
+      "texto": "What is the approximate speed of light in a vacuum?",
+      "opciones": [
+        "150,000 km/s",
+        "30,000 km/s",
+        "300,000 km/s",
+        "3,000,000 km/s"
+      ],
+      "correcta": 2,
+      "dificultad": 26
+    },
+    {
+      "texto": "In what year was Argentina's independence declared in Tucumán?",
+      "opciones": [
+        "1810",
+        "1806",
+        "1816",
+        "1853"
+      ],
+      "correcta": 2,
+      "dificultad": 27
+    },
+    {
+      "texto": "What is the capital of New Zealand?",
+      "opciones": [
+        "Auckland",
+        "Christchurch",
+        "Hamilton",
+        "Wellington"
+      ],
+      "correcta": 3,
+      "dificultad": 27
+    },
+    {
+      "texto": "What does the acronym SQL stand for?",
+      "opciones": [
+        "Structured Query Language",
+        "Simple Question Language",
+        "Sequential Query Logic",
+        "Standard Quality Language"
+      ],
+      "correcta": 0,
+      "dificultad": 28
+    },
+    {
+      "texto": "What is the smallest bone in the human body?",
+      "opciones": [
+        "Stapes",
+        "Incus",
+        "Malleus",
+        "Phalanx"
+      ],
+      "correcta": 0,
+      "dificultad": 28
+    },
+    {
+      "texto": "Who wrote The Odyssey?",
+      "opciones": [
+        "Homer",
+        "Virgil",
+        "Sophocles",
+        "Hesiod"
+      ],
+      "correcta": 0,
+      "dificultad": 29
+    },
+    {
+      "texto": "What is the capital of Morocco?",
+      "opciones": [
+        "Casablanca",
+        "Marrakech",
+        "Fez",
+        "Rabat"
+      ],
+      "correcta": 3,
+      "dificultad": 29
+    },
+    {
+      "texto": "In which cell organelle is most ATP produced?",
+      "opciones": [
+        "Ribosome",
+        "Lysosome",
+        "Golgi apparatus",
+        "Mitochondrion"
+      ],
+      "correcta": 3,
+      "dificultad": 30
+    },
+    {
+      "texto": "What is the time complexity of binary search?",
+      "opciones": [
+        "O(log n)",
+        "O(n)",
+        "O(n log n)",
+        "O(1)"
+      ],
+      "correcta": 0,
+      "dificultad": 30
+    },
+    {
+      "texto": "Which treaty ended World War I with Germany in 1919?",
+      "opciones": [
+        "Treaty of Tordesillas",
+        "Treaty of Utrecht",
+        "Peace of Westphalia",
+        "Treaty of Versailles"
+      ],
+      "correcta": 3,
+      "dificultad": 31
+    },
+    {
+      "texto": "What is the capital of Kazakhstan?",
+      "opciones": [
+        "Astana",
+        "Almaty",
+        "Tashkent",
+        "Bishkek"
+      ],
+      "correcta": 0,
+      "dificultad": 31
+    },
+    {
+      "texto": "Which Argentine writer wrote The Aleph?",
+      "opciones": [
+        "Julio Cortázar",
+        "Ernesto Sabato",
+        "Adolfo Bioy Casares",
+        "Jorge Luis Borges"
+      ],
+      "correcta": 3,
+      "dificultad": 32
+    },
+    {
+      "texto": "Which subatomic particle has a negative electric charge?",
+      "opciones": [
+        "Proton",
+        "Neutron",
+        "Photon",
+        "Electron"
+      ],
+      "correcta": 3,
+      "dificultad": 32
+    },
+    {
+      "texto": "In what year was Google founded?",
+      "opciones": [
+        "1994",
+        "2001",
+        "2004",
+        "1998"
+      ],
+      "correcta": 3,
+      "dificultad": 33
+    },
+    {
+      "texto": "Which law of physics states that every action has an equal and opposite reaction?",
+      "opciones": [
+        "Hooke's law",
+        "Ohm's law",
+        "Newton's third law",
+        "Newton's first law"
+      ],
+      "correcta": 2,
+      "dificultad": 33
+    },
+    {
+      "texto": "Which Roman emperor divided the Empire between his sons upon his death in 395?",
+      "opciones": [
+        "Theodosius I",
+        "Constantine I",
+        "Diocletian",
+        "Augustus"
+      ],
+      "correcta": 0,
+      "dificultad": 34
+    },
+    {
+      "texto": "What is the capital of Mongolia?",
+      "opciones": [
+        "Astana",
+        "Ulaanbaatar",
+        "Beijing",
+        "Hanoi"
+      ],
+      "correcta": 1,
+      "dificultad": 34
+    },
+    {
+      "texto": "How many chromosomes does a normal human somatic cell have?",
+      "opciones": [
+        "23",
+        "46",
+        "44",
+        "48"
+      ],
+      "correcta": 1,
+      "dificultad": 35
+    },
+    {
+      "texto": "Which protocol is used for the secure transfer of web pages?",
+      "opciones": [
+        "FTP",
+        "HTTPS",
+        "SMTP",
+        "Telnet"
+      ],
+      "correcta": 1,
+      "dificultad": 35
+    },
+    {
+      "texto": "Who received the 1921 Nobel Prize in Physics for explaining the photoelectric effect?",
+      "opciones": [
+        "Max Planck",
+        "Niels Bohr",
+        "Albert Einstein",
+        "Erwin Schrödinger"
+      ],
+      "correcta": 2,
+      "dificultad": 36
+    },
+    {
+      "texto": "Which sculptor created The Thinker?",
+      "opciones": [
+        "Donatello",
+        "Michelangelo",
+        "Constantin Brâncuși",
+        "Auguste Rodin"
+      ],
+      "correcta": 3,
+      "dificultad": 36
+    },
+    {
+      "texto": "At which battle was Napoleon decisively defeated in 1815?",
+      "opciones": [
+        "Trafalgar",
+        "Waterloo",
+        "Austerlitz",
+        "Borodino"
+      ],
+      "correcta": 1,
+      "dificultad": 37
+    },
+    {
+      "texto": "Which language, created by James Gosling, is compiled into bytecode for the JVM?",
+      "opciones": [
+        "C++",
+        "Java",
+        "Python",
+        "Go"
+      ],
+      "correcta": 1,
+      "dificultad": 37
+    },
+    {
+      "texto": "How many elements are in the current periodic table?",
+      "opciones": [
+        "118",
+        "108",
+        "112",
+        "120"
+      ],
+      "correcta": 0,
+      "dificultad": 38
+    },
+    {
+      "texto": "Which mountain range traditionally separates Europe from Asia in Russia?",
+      "opciones": [
+        "The Alps",
+        "The Carpathians",
+        "The Andes",
+        "The Urals"
+      ],
+      "correcta": 3,
+      "dificultad": 38
+    },
+    {
+      "texto": "What is the capital of Myanmar?",
+      "opciones": [
+        "Naypyidaw",
+        "Yangon",
+        "Mandalay",
+        "Bangkok"
+      ],
+      "correcta": 0,
+      "dificultad": 39
+    },
+    {
+      "texto": "Which physicist formulated the uncertainty principle?",
+      "opciones": [
+        "Erwin Schrödinger",
+        "Werner Heisenberg",
+        "Max Born",
+        "Paul Dirac"
+      ],
+      "correcta": 1,
+      "dificultad": 39
+    },
+    {
+      "texto": "Which English king signed the Magna Carta in 1215?",
+      "opciones": [
+        "Richard the Lionheart",
+        "Henry VIII",
+        "John Lackland",
+        "Edward I"
+      ],
+      "correcta": 2,
+      "dificultad": 40
+    },
+    {
+      "texto": "What is the name of the page-ranking algorithm created by Larry Page and Sergey Brin?",
+      "opciones": [
+        "Dijkstra",
+        "A*",
+        "PageRank",
+        "Bellman–Ford"
+      ],
+      "correcta": 2,
+      "dificultad": 40
+    },
+    {
+      "texto": "Which mathematician proved Fermat's Last Theorem in the 1990s?",
+      "opciones": [
+        "Grigori Perelman",
+        "Andrew Wiles",
+        "Terence Tao",
+        "Paul Erdős"
+      ],
+      "correcta": 1,
+      "dificultad": 41
+    },
+    {
+      "texto": "What is the capital of Burkina Faso?",
+      "opciones": [
+        "Bamako",
+        "Niamey",
+        "Ouagadougou",
+        "Accra"
+      ],
+      "correcta": 2,
+      "dificultad": 41
+    },
+    {
+      "texto": "Which data structure is typically used for breadth-first search (BFS) of a graph?",
+      "opciones": [
+        "Queue",
+        "Stack",
+        "Heap",
+        "Hash table"
+      ],
+      "correcta": 0,
+      "dificultad": 42
+    },
+    {
+      "texto": "In what year was Darwin's On the Origin of Species published?",
+      "opciones": [
+        "1809",
+        "1859",
+        "1871",
+        "1882"
+      ],
+      "correcta": 1,
+      "dificultad": 42
+    },
+    {
+      "texto": "What is the approximate value of Avogadro's constant?",
+      "opciones": [
+        "6.022 × 10²⁰ mol⁻¹",
+        "3.14 × 10²³ mol⁻¹",
+        "9.81 × 10²³ mol⁻¹",
+        "6.022 × 10²³ mol⁻¹"
+      ],
+      "correcta": 3,
+      "dificultad": 43
+    },
+    {
+      "texto": "Which general-purpose electronic computer was completed in 1945?",
+      "opciones": [
+        "UNIVAC I",
+        "Colossus",
+        "Z3",
+        "ENIAC"
+      ],
+      "correcta": 3,
+      "dificultad": 43
+    },
+    {
+      "texto": "Which philosopher wrote Critique of Pure Reason?",
+      "opciones": [
+        "Immanuel Kant",
+        "Georg Hegel",
+        "Friedrich Nietzsche",
+        "David Hume"
+      ],
+      "correcta": 0,
+      "dificultad": 44
+    },
+    {
+      "texto": "What is the closest large spiral galaxy to the Milky Way?",
+      "opciones": [
+        "Triangulum",
+        "Sombrero",
+        "Whirlpool",
+        "Andromeda"
+      ],
+      "correcta": 3,
+      "dificultad": 44
+    },
+    {
+      "texto": "What is the average time complexity of quicksort?",
+      "opciones": [
+        "O(n log n)",
+        "O(n)",
+        "O(n²)",
+        "O(log n)"
+      ],
+      "correcta": 0,
+      "dificultad": 45
+    },
+    {
+      "texto": "Which of the following is a classic NP-complete problem?",
+      "opciones": [
+        "Sorting a list",
+        "Binary search",
+        "Depth-first search",
+        "Boolean satisfiability (SAT)"
+      ],
+      "correcta": 3,
+      "dificultad": 45
+    },
+    {
+      "texto": "In what year did García Márquez receive the Nobel Prize in Literature?",
+      "opciones": [
+        "1972",
+        "1990",
+        "1982",
+        "1967"
+      ],
+      "correcta": 2,
+      "dificultad": 46
+    },
+    {
+      "texto": "Which country has the largest number of islands in the world?",
+      "opciones": [
+        "Indonesia",
+        "Philippines",
+        "Sweden",
+        "Canada"
+      ],
+      "correcta": 2,
+      "dificultad": 46
+    },
+    {
+      "texto": "Which physicist proposed an atomic model with quantized orbits in 1913?",
+      "opciones": [
+        "Niels Bohr",
+        "Ernest Rutherford",
+        "J. J. Thomson",
+        "Louis de Broglie"
+      ],
+      "correcta": 0,
+      "dificultad": 47
+    },
+    {
+      "texto": "In what year was the first version of the Unity engine released?",
+      "opciones": [
+        "2005",
+        "1999",
+        "2009",
+        "2012"
+      ],
+      "correcta": 0,
+      "dificultad": 47
+    },
+    {
+      "texto": "Which result states that every consistent formal system powerful enough contains true statements that cannot be proven within it?",
+      "opciones": [
+        "Bayes' theorem",
+        "Gödel's incompleteness theorems",
+        "Church–Turing thesis",
+        "Fermat's Last Theorem"
+      ],
+      "correcta": 1,
+      "dificultad": 48
+    },
+    {
+      "texto": "Which 1648 treaty ended the Thirty Years' War?",
+      "opciones": [
+        "Treaty of Versailles",
+        "Congress of Vienna",
+        "Peace of Westphalia",
+        "Treaty of Utrecht"
+      ],
+      "correcta": 2,
+      "dificultad": 48
+    },
+    {
+      "texto": "Which high-level programming language did IBM develop in 1957?",
+      "opciones": [
+        "COBOL",
+        "LISP",
+        "ALGOL",
+        "FORTRAN"
+      ],
+      "correcta": 3,
+      "dificultad": 49
+    },
+    {
+      "texto": "Who was the first woman to win the Fields Medal, in 2014?",
+      "opciones": [
+        "Karen Uhlenbeck",
+        "Emmy Noether",
+        "Maryam Mirzakhani",
+        "Sofia Kovalevskaya"
+      ],
+      "correcta": 2,
+      "dificultad": 49
+    },
+    {
+      "texto": "What is the capital of Bhutan?",
+      "opciones": [
+        "Kathmandu",
+        "Dhaka",
+        "Colombo",
+        "Thimphu"
+      ],
+      "correcta": 3,
+      "dificultad": 50
+    },
+    {
+      "texto": "Which Russian mathematician proved the Poincaré conjecture and declined the Fields Medal?",
+      "opciones": [
+        "Andrey Kolmogorov",
+        "Grigori Perelman",
+        "Israel Gelfand",
+        "Mikhail Gromov"
+      ],
+      "correcta": 1,
+      "dificultad": 50
+    }
+  ]
+}
