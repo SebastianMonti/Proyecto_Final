@@ -10,7 +10,7 @@ public class Prueba : MonoBehaviour
     Controlador_Trivia trivia;
     Estado_Trivia ultimoEstado = Estado_Trivia.Inactiva;
 
-
+    [SerializeField] private Vinculo_Vistas_Presentador vinculoVistas;//para q unity lo asigne desde el insp
     void Start()
     {   
         Tablero tablero = new Tablero();
@@ -50,9 +50,16 @@ public class Prueba : MonoBehaviour
               controlador_Entidades
           );
         */
+
         trivia = new Controlador_Trivia(new Banco_Preguntas_Local());
         manager = new Ronda_Manager(cargador, estadisticas, trivia);
-        manager.Iniciar_Partida();
+
+        if (vinculoVistas != null)
+        {
+            vinculoVistas.Inicializar(manager);
+        }
+        
+       // manager.Iniciar_Partida();
 
         
     }
@@ -61,10 +68,14 @@ public class Prueba : MonoBehaviour
     {
         controlador.Verificar_Tecla_Presionada();
         controladorExplosiones.Actualizar(Time.deltaTime);
-        manager.Actualizar(Time.deltaTime);
+        manager?.Actualizar(Time.deltaTime);
 
         //para probar!
-        if (manager.Fase == Fase.Trivia) Probar_Trivia();
+        if (manager != null)
+        {
+            manager.Actualizar(Time.deltaTime);
+            if (manager.Fase == Fase.Trivia) Probar_Trivia();
+        }
     }
 
     void Probar_Trivia()

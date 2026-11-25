@@ -1,83 +1,50 @@
-using UnityEngine;
-using UnityEngine.UI;
-
-namespace Refactoring.Vistas
-{
-    public interface IPresentadorMenu
-    {
-        void Click_Boton_Seleccionar();
-        void Cargar_Partida();
-    }
-
-    public class Vista_Menu : MonoBehaviour
-    {
-        public GameObject Panel_Menu;
-        public Button Boton_Seleccionar_Nivel;
-        public Button Boton_Cargar_Partida;
-        public Image Imagen_Snake;
-
-        private IPresentadorMenu presentador;
-
-        public void Instanciar_Presentador(IPresentadorMenu p)
-        {
-            this.presentador = p;
-        }
-
-        public void Ocultar_Panel_Menu()
-        {
-            if (Panel_Menu != null) Panel_Menu.SetActive(false);
-        }
-
-        public void Mostrar_Panel_Menu()
-        {
-            if (Panel_Menu != null) Panel_Menu.SetActive(true);
-        }
-
-        // Estos m�todos se enlazan en el evento OnClick() de los botones en el inspector de Unity
-        public void Click_en_Boton_Seleccionar_Nivel()
-        {
-            presentador?.Click_Boton_Seleccionar();
-        }
-
-        public void Click_en_Boton_Cargar_Partida()
-        {
-            presentador?.Cargar_Partida();
-        }
-    }
-}
-/*
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Vista_Menu : MonoBehaviour
 {
-    public GameObject Panel_Menu;
-    public Button Boton_Seleccionar_Nivel;
-    public Button Boton_Cargar_Partida;
-    public Image Imagen_Snake;
-    public Presentador presenter;
+    [Header("Panel y Botones")]
+    [SerializeField] private GameObject panelMenu;
+    [SerializeField] private Button botonJugar;
+    [SerializeField] private Button botonSeleccionarIdioma;
 
-    public void Instanciar_presentador(Presentador p)
+    [Header("Labels")]
+    [SerializeField] private TMP_Text labelJugar;
+    [SerializeField] private TMP_Text labelSeleccionarIdioma;
+
+    public event Action OnJugarSolicitado;
+    public event Action OnSeleccionarIdiomaSolicitado;
+
+    private void Awake()
     {
-        presenter = p;
+        botonJugar.onClick.AddListener(() =>
+        {
+            Debug.Log("Click directo en botonJugar");
+            OnJugarSolicitado?.Invoke();
+        });
+        botonSeleccionarIdioma.onClick.AddListener(() => OnSeleccionarIdiomaSolicitado?.Invoke());
     }
-    public void Ocultar_Panel_Menu()
+
+    private void OnDestroy()
     {
-        Panel_Menu.SetActive(false);
+        botonJugar.onClick.RemoveAllListeners();
+        botonSeleccionarIdioma.onClick.RemoveAllListeners();
     }
-    public void Mostrar_Panel_Menu()
+
+    public void Mostrar()
     {
-        Panel_Menu.SetActive(true);
+        panelMenu.SetActive(true);
     }
-    public void Clic_En_Boton_Seleccionar_Nivel()
+    public void Ocultar()
     {
-        presenter.Clic_Boton_Seleccionar();
+        panelMenu.SetActive(false);
     }
-    public void Clic_En_Boton_Cargar_Partida()
+
+    public void EstablecerTextos(string textoJugar, string textoSeleccionarIdioma)
     {
-        presenter.Cargar_Partida();
+        labelJugar.text = textoJugar;
+        labelSeleccionarIdioma.text = textoSeleccionarIdioma;
     }
 }
-*/
