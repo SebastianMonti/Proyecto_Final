@@ -48,6 +48,7 @@ public class Ronda_Manager
         if (Fase != Fase.Batalla || ronda == null) 
             return;
 
+        ronda.Actualizar_Tiempo(dt);
 
         int segundos = Mathf.CeilToInt(ronda.TiempoRestante);
         if (segundos != ultimoSegundoMostrado)

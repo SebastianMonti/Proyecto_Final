@@ -12,7 +12,13 @@ public class Controlador_Entidades
         controlador_colisiones = new Controlador_Colisiones();
 
         controlador_colisiones.Registrar_Colision<Personaje, Moneda_Cobre>(
-            Colision_Personaje_Moneda);
+            Colision_Personaje_Moneda_Cobre);
+
+        controlador_colisiones.Registrar_Colision<Personaje, Moneda_Plata>(
+        Colision_Personaje_Moneda_Plata);
+
+        controlador_colisiones.Registrar_Colision<Personaje, Moneda_Oro>(
+            Colision_Personaje_Moneda_Oro);
 
         controlador_colisiones.Registrar_Colision<Enemigo_Avaro, Moneda_Cobre>(
             Colision_EnemigoAvaro_Moneda);
@@ -44,7 +50,21 @@ public class Controlador_Entidades
         }
     }
 
-    private void Colision_Personaje_Moneda(Personaje personaje, Moneda_Cobre moneda)
+    private void Colision_Personaje_Moneda_Cobre(Personaje personaje, Moneda_Cobre moneda)
+    {
+        estadisticas?.Sumar_Monedas(moneda.Obtener_Valor());
+        Debug.Log($"Moneda atrapada (+{moneda.Obtener_Valor()}). Total: {estadisticas?.Obtener_Monedas()}");
+        moneda.Atrapada();
+    }
+
+    private void Colision_Personaje_Moneda_Plata(Personaje personaje, Moneda_Plata moneda)
+    {
+        estadisticas?.Sumar_Monedas(moneda.Obtener_Valor());
+        Debug.Log($"Moneda atrapada (+{moneda.Obtener_Valor()}). Total: {estadisticas?.Obtener_Monedas()}");
+        moneda.Atrapada();
+    }
+
+    private void Colision_Personaje_Moneda_Oro(Personaje personaje, Moneda_Oro moneda)
     {
         estadisticas?.Sumar_Monedas(moneda.Obtener_Valor());
         Debug.Log($"Moneda atrapada (+{moneda.Obtener_Valor()}). Total: {estadisticas?.Obtener_Monedas()}");

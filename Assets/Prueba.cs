@@ -61,9 +61,8 @@ public class Prueba : MonoBehaviour
 
     void Update()
     {
-        controlador.Verificar_Tecla_Presionada();
+        //controlador.Verificar_Tecla_Presionada();
         controladorExplosiones.Actualizar(Time.deltaTime);
-        manager?.Actualizar(Time.deltaTime);
 
         //para probar!
         if (manager != null)

@@ -26,6 +26,8 @@ public class Enemigo_Basico : Enemigo
         for (int i = 0; i < 3; i++)
         {
             Lista_Monedas.Add(new Moneda_Cobre());
+            Lista_Monedas.Add(new Moneda_Plata());
+            Lista_Monedas.Add(new Moneda_Oro());
         }
     }
     public override void Decrementar_Vida(int Daño_Recibido)

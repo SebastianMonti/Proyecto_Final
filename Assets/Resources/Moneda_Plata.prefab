@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1413529451113890069}
   - component: {fileID: 1469418426218260048}
   m_Layer: 0
-  m_Name: Monedita
+  m_Name: Moneda_Plata
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1c3a5da80bf289544908238bb58fbbdc, type: 2}
+  - {fileID: 2100000, guid: 01da58c4dafa21b4c92c12447f704233, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

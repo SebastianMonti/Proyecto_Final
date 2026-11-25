@@ -12,20 +12,13 @@ public class Vinculo_Vistas_Presentador : MonoBehaviour
     {
         rondaManager = manager;
 
-        if (presenter != null)
-        {
-            presenter.Dispose();
-        }
-
-        presenter = new Presentador_Menu(viewMenu, viewIdioma, rondaManager);
+        CrearPresentador();
     }
 
-    private void Awake()
+    private void CrearPresentador()
     {
-        if (rondaManager != null && presenter == null)
-        {
-            presenter = new Presentador_Menu(viewMenu, viewIdioma, rondaManager);
-        }
+        presenter?.Dispose();
+        presenter = new Presentador_Menu(viewMenu, viewIdioma, rondaManager);
     }
 
     private void OnDestroy()
