@@ -26,6 +26,8 @@ public class Enemigo_Fantasma : Enemigo
         for (int i = 0; i < 6; i++)
         {
             Lista_Monedas.Add(new Moneda_Cobre());
+            Lista_Monedas.Add(new Moneda_Plata());
+            Lista_Monedas.Add(new Moneda_Oro());
         }
     }
 

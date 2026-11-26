@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class Prueba : MonoBehaviour
 {
+    [SerializeField] private Vista_Tiempo_Ronda vistaTiempoRonda;
+
     private Controlador_Explosiones controladorExplosiones;
     private Ronda_Manager manager;
     private Presentador_Trivia presentadorTrivia;
@@ -10,6 +13,7 @@ public class Prueba : MonoBehaviour
     private Presentador_Tienda presentadorTienda;
     private Presentador_Impuestos presentadorImpuestos;
     private Presentador_Fin_Juego presentadorFinJuego;
+    private Presentador_Jugando presentadorJugando;
 
     void Start()
     {
@@ -42,6 +46,21 @@ public class Prueba : MonoBehaviour
 
         Controlador_Trivia trivia = new Controlador_Trivia(new Banco_Preguntas_Local());
         manager = new Ronda_Manager(cargador, estadisticas, trivia);
+        manager.generadorMonedas = generadorMonedas;
+
+        // Presentador del HUD de batalla (plata, ronda y tiempo)
+        if (vistaTiempoRonda == null)
+        {
+            vistaTiempoRonda = FindObjectOfType<Vista_Tiempo_Ronda>(true);
+        }
+        if (vistaTiempoRonda != null)
+        {
+            presentadorJugando = new Presentador_Jugando(manager, estadisticas, vistaTiempoRonda);
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró Vista_Tiempo_Ronda en la escena.");
+        }
 
         // 1. Menú Principal
         GameObject prefabMenu = Resources.Load<GameObject>("Vista_Esqueleto/Menu_Principal");
@@ -55,6 +74,26 @@ public class Prueba : MonoBehaviour
             presentadorMenu.OnPartidaIniciada += () => controladorExplosiones.Pausado = false;
         }
 
+
+        //juego 
+        GameObject prefabBatalla = Resources.Load<GameObject>("Vista_Esqueleto/Batalla");
+        if (prefabBatalla != null)
+        {
+            GameObject batallaObj = Instantiate(prefabBatalla);
+            Vista_Tiempo_Ronda vistaBatalla = batallaObj.GetComponentInChildren<Vista_Tiempo_Ronda>(true);
+            if (vistaBatalla != null)
+            {
+                presentadorJugando = new Presentador_Jugando(manager, estadisticas, vistaBatalla);
+            }
+            else
+            {
+                Debug.LogWarning("El prefab Batalla no tiene componente Vista_Tiempo_Ronda.");
+            }
+        }
+        else
+        {
+            Debug.LogError("No se encontró Resources/Vista_Esqueleto/Batalla");
+        }
         // 2. Trivia
         GameObject prefabTrivia = Resources.Load<GameObject>("Vista_Esqueleto/Panel_Trivia");
         if (prefabTrivia != null)
@@ -77,6 +116,7 @@ public class Prueba : MonoBehaviour
         {
             Debug.LogError("No se encontró Resources/Vista_Esqueleto/Panel_Tienda");
         }
+
         // 4. Impuestos
         GameObject prefabImpuestos = Resources.Load<GameObject>("Vista_Esqueleto/Panel_Impuestos");
         if (prefabImpuestos != null)
@@ -89,6 +129,7 @@ public class Prueba : MonoBehaviour
         {
             Debug.LogError("No se encontró Resources/Vista_Esqueleto/Panel_Impuestos");
         }
+
         // 5. Fin de Juego
         GameObject prefabFinJuego = Resources.Load<GameObject>("Vista_Esqueleto/Panel_Fin_Juego");
         if (prefabFinJuego != null)
@@ -110,15 +151,20 @@ public class Prueba : MonoBehaviour
     void Update()
     {
         manager.Actualizar(Time.deltaTime);
+
+        bool enBatalla = manager.Fase == Fase.Batalla;
+        controladorExplosiones.Pausado = !enBatalla;
+
+        if (enBatalla)
+        {
+            controladorExplosiones.Actualizar(Time.deltaTime);
+        }
+
+        presentadorJugando?.Actualizar();
         presentadorTrivia?.Actualizar();
         presentadorTienda?.Actualizar();
         presentadorImpuestos?.Actualizar();
         presentadorFinJuego?.Actualizar();
-
-        if (manager.Fase == Fase.Batalla)
-        {
-            controladorExplosiones.Actualizar(Time.deltaTime);
-        }
     }
 
     private void OnDestroy()

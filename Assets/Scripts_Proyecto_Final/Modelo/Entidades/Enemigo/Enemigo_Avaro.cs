@@ -28,6 +28,7 @@ public class Enemigo_Avaro : Enemigo
         for (int i = 0; i < 3; i++)
         {
             Lista_Monedas.Add(new Moneda_Cobre());
+            Lista_Monedas.Add(new Moneda_Plata());
         }
     }
 

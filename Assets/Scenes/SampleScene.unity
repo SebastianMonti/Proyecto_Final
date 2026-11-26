@@ -433,6 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0a88da04c2bf347ae0f06643c83e51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vistaTiempoRonda: {fileID: 0}
 --- !u!1 &1750143807
 GameObject:
   m_ObjectHideFlags: 0

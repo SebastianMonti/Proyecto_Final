@@ -14,11 +14,13 @@ public class Ronda_Manager
     int ultimoSegundoMostrado = -1;
     public int Numero => numero;
     public Ronda Ronda_Actual => ronda;
+    public Generador_Monedas generadorMonedas;
 
     Ronda ronda;
     int numero = 1;
     int saldoInicialRonda;
     public Fase Fase { get; private set; }
+
 
     public Ronda_Manager(Cargador_Rondas cargador, Estadisticas stats, Controlador_Trivia trivia)
     {
@@ -63,6 +65,7 @@ public class Ronda_Manager
             if (ronda.Terminada)
             {
                 ronda.Limpiar_Enemigos();
+                generadorMonedas.Limpiar_Monedas_Activas();
                 Fase = Fase.Trivia;
                 int ganancias = stats.Obtener_Monedas() -saldoInicialRonda;   // lo ganado en la ronda
                 trivia.Iniciar(ganancias, numero);

@@ -8,6 +8,8 @@ public class Generador_Monedas
     private Estadisticas estadisticas;
     private Func<Presentador_Moneda_Cobre> fabricaPresentadorCobre;
 
+    private readonly List<Moneda> monedasActivas = new List<Moneda>();//para poder limpiar las q quedan activas
+
     public Generador_Monedas(
         Tablero tablero,
         Random suerte,
@@ -42,6 +44,7 @@ public class Generador_Monedas
             {
                 m.Ubicar_En_Celda(celda_libre);
                 m.Dibujar(celda_libre.Obtener_Posicion_X(), celda_libre.Obtener_Posicion_Z());
+                monedasActivas.Add(m);
             }
         }
     }
@@ -57,5 +60,15 @@ public class Generador_Monedas
         {
             monedas.Add(new Moneda_Cobre());
         }
+    }
+
+    public void Limpiar_Monedas_Activas()
+    {
+        foreach (Moneda m in monedasActivas)
+        {
+            if (m == null) continue;
+            m.Atrapada();
+        }
+        monedasActivas.Clear();
     }
 }

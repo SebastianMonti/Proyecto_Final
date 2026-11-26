@@ -27,6 +27,8 @@ public class Enemigo_Tanque : Enemigo
         for (int i = 0; i < 8; i++)
         {
             Lista_Monedas.Add(new Moneda_Cobre());
+            Lista_Monedas.Add(new Moneda_Plata());
+            Lista_Monedas.Add(new Moneda_Oro());
         }
     }
 
