@@ -21,7 +21,13 @@ public class Controlador_Entidades
             Colision_Personaje_Moneda_Oro);
 
         controlador_colisiones.Registrar_Colision<Enemigo_Avaro, Moneda_Cobre>(
-            Colision_EnemigoAvaro_Moneda);
+        Colision_EnemigoAvaro_Moneda_Cobre);
+
+        controlador_colisiones.Registrar_Colision<Enemigo_Avaro, Moneda_Plata>(
+            Colision_EnemigoAvaro_Moneda_Plata);
+
+        controlador_colisiones.Registrar_Colision<Enemigo_Avaro, Moneda_Oro>(
+            Colision_EnemigoAvaro_Moneda_Oro);
 
         controlador_colisiones.Registrar_Colision<Explosion, Enemigo_Basico>(
             Colision_Explosion_Enemigo);
@@ -76,7 +82,15 @@ public class Controlador_Entidades
         enemigo.Decrementar_Vida(explosion.Obtener_Daño());
     }
 
-    private void Colision_EnemigoAvaro_Moneda(Enemigo_Avaro avaro, Moneda_Cobre moneda)
+    private void Colision_EnemigoAvaro_Moneda_Cobre(Enemigo_Avaro avaro, Moneda_Cobre moneda)
+    {
+        avaro.Reaccionar_A_Moneda(moneda);
+    }
+    private void Colision_EnemigoAvaro_Moneda_Plata(Enemigo_Avaro avaro, Moneda_Plata moneda)
+    {
+        avaro.Reaccionar_A_Moneda(moneda);
+    }
+    private void Colision_EnemigoAvaro_Moneda_Oro(Enemigo_Avaro avaro, Moneda_Oro  moneda)
     {
         avaro.Reaccionar_A_Moneda(moneda);
     }

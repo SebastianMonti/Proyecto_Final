@@ -7,7 +7,7 @@ public enum Fase { Batalla, Trivia, Tienda, Impuestos, FinJuego }
 public class Ronda_Manager
 {
     const float DURACION_BASE = 20f;
-
+    public bool EsVictoria { get; private set; }
     readonly Cargador_Rondas cargador;
     readonly Estadisticas stats;
     readonly Controlador_Trivia trivia;
@@ -30,6 +30,7 @@ public class Ronda_Manager
     public void Iniciar_Partida()
     {
         numero = 1;
+        EsVictoria = false;
         Iniciar_Ronda();
     }
 
@@ -90,7 +91,13 @@ public class Ronda_Manager
 
     public void Avanzar_Ronda()
     {
-        if (cargador.EsUltimaRonda(numero)) { Fase = Fase.FinJuego; return; }
+        if (cargador.EsUltimaRonda(numero))
+        {
+            EsVictoria = true;
+            Fase = Fase.FinJuego;
+            return;
+        }
+
         numero++;
         Iniciar_Ronda();
     }
@@ -99,7 +106,40 @@ public class Ronda_Manager
     {
         stats.Sumar_Monedas(trivia.Ajuste());
         trivia.Cerrar();
-        Avanzar_Ronda();     // más adelante acá va la tienda
+        Fase = Fase.Tienda;
+    }
+
+    public void Terminar_Tienda()
+    {
+        if (numero % 5 == 0)
+        {
+            Fase = Fase.Impuestos;
+            return;
+        }
+
+        Avanzar_Ronda();
+    }
+
+    public int Obtener_Impuesto_Actual()
+    {
+        return cargador.ObtenerDatosRonda(numero).Impuesto;
+    }
+
+    public bool Intentar_Pagar_Impuesto()
+    {
+        int impuesto = Obtener_Impuesto_Actual();
+
+        if (stats.Obtener_Monedas() >= impuesto)
+        {
+            stats.Sumar_Monedas(-impuesto);
+            Avanzar_Ronda();
+            return true;
+        }
+
+        EsVictoria = false;
+        Fase = Fase.FinJuego;
+        Debug.Log("Bancarrota: no alcanzaron las monedas para pagar el impuesto.");
+        return false;
     }
 
 }

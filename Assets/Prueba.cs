@@ -1,4 +1,225 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class Prueba : MonoBehaviour
+{
+    private Controlador_Explosiones controladorExplosiones;
+    private Ronda_Manager manager;
+    private Presentador_Trivia presentadorTrivia;
+    private Presentador_Menu presentadorMenu;
+    private Presentador_Tienda presentadorTienda;
+    private Presentador_Impuestos presentadorImpuestos;
+    private Presentador_Fin_Juego presentadorFinJuego;
+
+    void Start()
+    {
+        if (Servicio_Localizacion.Instancia == null)
+        {
+            GameObject locObj = new GameObject("Servicio_Localizacion");
+            locObj.AddComponent<Servicio_Localizacion>();
+            DontDestroyOnLoad(locObj);
+        }
+
+        Tablero tablero = new Tablero();
+        Estadisticas estadisticas = new Estadisticas();
+        Controlador_Entidades controlador_Entidades = new Controlador_Entidades(estadisticas);
+        Generador_Monedas generadorMonedas = new Generador_Monedas(tablero, new System.Random(), estadisticas);
+
+        Celda celda = tablero.Obtener_Celda(4, 4);
+        Personaje personaje = new Personaje(celda, tablero, controlador_Entidades);
+        celda.Establecer_Entidad(personaje);
+
+        controladorExplosiones = new Controlador_Explosiones(
+            estadisticas,
+            personaje,
+            tablero,
+            controlador_Entidades
+        );
+        controladorExplosiones.Pausado = true;
+
+        Fabrica_Enemigos fabrica = new Fabrica_Enemigos(tablero, generadorMonedas, controlador_Entidades, personaje);
+        Cargador_Rondas cargador = new Cargador_Rondas(fabrica, tablero);
+
+        Controlador_Trivia trivia = new Controlador_Trivia(new Banco_Preguntas_Local());
+        manager = new Ronda_Manager(cargador, estadisticas, trivia);
+
+        // 1. Menú Principal
+        GameObject prefabMenu = Resources.Load<GameObject>("Vista_Esqueleto/Menu_Principal");
+        if (prefabMenu != null)
+        {
+            GameObject menuObj = Instantiate(prefabMenu);
+            Vista_Menu vistaMenu = menuObj.GetComponentInChildren<Vista_Menu>(true);
+            Vista_Seleccionar_Idioma vistaIdioma = menuObj.GetComponentInChildren<Vista_Seleccionar_Idioma>(true);
+
+            presentadorMenu = new Presentador_Menu(vistaMenu, vistaIdioma, manager);
+            presentadorMenu.OnPartidaIniciada += () => controladorExplosiones.Pausado = false;
+        }
+
+        // 2. Trivia
+        GameObject prefabTrivia = Resources.Load<GameObject>("Vista_Esqueleto/Panel_Trivia");
+        if (prefabTrivia != null)
+        {
+            GameObject triviaObj = Instantiate(prefabTrivia);
+            Vista_Trivia vistaTrivia = triviaObj.GetComponentInChildren<Vista_Trivia>(true);
+            presentadorTrivia = new Presentador_Trivia(trivia, manager, vistaTrivia);
+        }
+
+        // 3. Tienda
+        Tienda tienda = new Tienda(estadisticas);
+        GameObject prefabTienda = Resources.Load<GameObject>("Vista_Esqueleto/Panel_Tienda");
+        if (prefabTienda != null)
+        {
+            GameObject tiendaObj = Instantiate(prefabTienda);
+            Vista_Tienda vistaTienda = tiendaObj.GetComponentInChildren<Vista_Tienda>(true);
+            presentadorTienda = new Presentador_Tienda(tienda, estadisticas, manager, vistaTienda);
+        }
+        else
+        {
+            Debug.LogError("No se encontró Resources/Vista_Esqueleto/Panel_Tienda");
+        }
+        // 4. Impuestos
+        GameObject prefabImpuestos = Resources.Load<GameObject>("Vista_Esqueleto/Panel_Impuestos");
+        if (prefabImpuestos != null)
+        {
+            GameObject impuestosObj = Instantiate(prefabImpuestos);
+            Vista_Impuestos vistaImpuestos = impuestosObj.GetComponentInChildren<Vista_Impuestos>(true);
+            presentadorImpuestos = new Presentador_Impuestos(manager, vistaImpuestos);
+        }
+        else
+        {
+            Debug.LogError("No se encontró Resources/Vista_Esqueleto/Panel_Impuestos");
+        }
+        // 5. Fin de Juego
+        GameObject prefabFinJuego = Resources.Load<GameObject>("Vista_Esqueleto/Panel_Fin_Juego");
+        if (prefabFinJuego != null)
+        {
+            GameObject finObj = Instantiate(prefabFinJuego);
+            Vista_Fin_Juego vistaFinJuego = finObj.GetComponentInChildren<Vista_Fin_Juego>(true);
+            presentadorFinJuego = new Presentador_Fin_Juego(
+                manager,
+                vistaFinJuego,
+                () => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex)
+            );
+        }
+        else
+        {
+            Debug.LogError("No se encontró Resources/Vista_Esqueleto/Panel_Fin_Juego");
+        }
+    }
+
+    void Update()
+    {
+        manager.Actualizar(Time.deltaTime);
+        presentadorTrivia?.Actualizar();
+        presentadorTienda?.Actualizar();
+        presentadorImpuestos?.Actualizar();
+        presentadorFinJuego?.Actualizar();
+
+        if (manager.Fase == Fase.Batalla)
+        {
+            controladorExplosiones.Actualizar(Time.deltaTime);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        presentadorMenu?.Dispose();
+        presentadorTienda?.Dispose();
+        presentadorImpuestos?.Dispose();
+        presentadorFinJuego?.Dispose();
+    }
+}
+
+
+/*using UnityEngine;
+
+public class Prueba : MonoBehaviour
+{
+    private Controlador_Explosiones controladorExplosiones;
+    private Ronda_Manager manager;
+    private Presentador_Trivia presentadorTrivia;
+    private Presentador_Menu presentadorMenu;
+
+    void Start()
+    {
+        if (Servicio_Localizacion.Instancia == null)
+        {
+            new GameObject("Servicio_Localizacion").AddComponent<Servicio_Localizacion>();
+        }
+
+        Tablero tablero = new Tablero();
+        Estadisticas estadisticas = new Estadisticas();
+        Controlador_Entidades controlador_Entidades = new Controlador_Entidades(estadisticas);
+        Generador_Monedas generadorMonedas = new Generador_Monedas(tablero, new System.Random(), estadisticas);
+
+        Celda celda = tablero.Obtener_Celda(4, 4);
+        Personaje personaje = new Personaje(celda, tablero, controlador_Entidades);
+        celda.Establecer_Entidad(personaje);
+
+        controladorExplosiones = new Controlador_Explosiones(
+            estadisticas,
+            personaje,
+            tablero,
+            controlador_Entidades
+        );
+        controladorExplosiones.Pausado = true;
+
+        Fabrica_Enemigos fabrica = new Fabrica_Enemigos(tablero, generadorMonedas, controlador_Entidades, personaje);
+        Cargador_Rondas cargador = new Cargador_Rondas(fabrica, tablero);
+
+        Controlador_Trivia trivia = new Controlador_Trivia(new Banco_Preguntas_Local());
+        manager = new Ronda_Manager(cargador, estadisticas, trivia);
+
+        // 1. Instanciar Menu_Principal desde Resources/Vista_Esqueleto
+        GameObject prefabMenu = Resources.Load<GameObject>("Vista_Esqueleto/Menu_Principal");
+        if (prefabMenu != null)
+        {
+            GameObject menuObj = Instantiate(prefabMenu);
+            Vista_Menu vistaMenu = menuObj.GetComponentInChildren<Vista_Menu>(true);
+            Vista_Seleccionar_Idioma vistaIdioma = menuObj.GetComponentInChildren<Vista_Seleccionar_Idioma>(true);
+
+            presentadorMenu = new Presentador_Menu(vistaMenu, vistaIdioma, manager);
+            presentadorMenu.OnPartidaIniciada += () => controladorExplosiones.Pausado = false;
+        }
+        else
+        {
+            Debug.LogError("No se encontró Resources/Vista_Esqueleto/Menu_Principal");
+        }
+
+        // 2. Instanciar Panel_Trivia desde Resources/Vista_Esqueleto
+        GameObject prefabTrivia = Resources.Load<GameObject>("Vista_Esqueleto/Panel_Trivia");
+        if (prefabTrivia != null)
+        {
+            GameObject triviaObj = Instantiate(prefabTrivia);
+            Vista_Trivia vistaTrivia = triviaObj.GetComponentInChildren<Vista_Trivia>(true);
+
+            presentadorTrivia = new Presentador_Trivia(trivia, manager, vistaTrivia);
+        }
+        else
+        {
+            Debug.LogError("No se encontró Resources/Vista_Esqueleto/Panel_Trivia");
+        }
+    }
+
+    void Update()
+    {
+        manager.Actualizar(Time.deltaTime);
+        presentadorTrivia?.Actualizar();
+
+        if (manager.Fase != Fase.Trivia)
+        {
+            controladorExplosiones.Actualizar(Time.deltaTime);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        presentadorMenu?.Dispose();
+    }
+}
+
+/* 
+ * using UnityEngine;
 
 public class Prueba : MonoBehaviour
 {
@@ -37,14 +258,6 @@ public class Prueba : MonoBehaviour
             new System.Random(),
             estadisticas
         );
-        /*  Celda celda_Enemigo1 = tablero.Obtener_Celda(6, 4); // Cerca del personaje para probar r�pido
-          Enemigo_Basico enemigo1 = new Enemigo_Basico(
-              celda_Enemigo1,
-              tablero,
-              generador_Monedas,
-              controlador_Entidades
-          );
-        */
 
         trivia = new Controlador_Trivia(new Banco_Preguntas_Local());
         manager = new Ronda_Manager(cargador, estadisticas, trivia);
@@ -120,4 +333,4 @@ public class Prueba : MonoBehaviour
         if (p != null) Debug.Log($"{p.texto}  1){p.opciones[0]} 2){p.opciones[1]} 3){p.opciones[2]} 4){p.opciones[3]}");
     }
 }
-
+*/
