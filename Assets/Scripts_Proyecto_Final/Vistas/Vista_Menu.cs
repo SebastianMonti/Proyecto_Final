@@ -9,13 +9,16 @@ public class Vista_Menu : MonoBehaviour
     [SerializeField] private GameObject panelMenu;
     [SerializeField] private Button botonJugar;
     [SerializeField] private Button botonSeleccionarIdioma;
+    [SerializeField] private Button botonContinuar;
 
     [Header("Labels")]
     [SerializeField] private TMP_Text labelJugar;
     [SerializeField] private TMP_Text labelSeleccionarIdioma;
+    [SerializeField] private TMP_Text labelContinuar;
 
     public event Action OnJugarSolicitado;
     public event Action OnSeleccionarIdiomaSolicitado;
+    public event Action OnContinuarSolicitado;
 
     private void Awake()
     {
@@ -32,28 +35,38 @@ public class Vista_Menu : MonoBehaviour
         {
             botonSeleccionarIdioma.onClick.AddListener(() => OnSeleccionarIdiomaSolicitado?.Invoke());
         }
+        if (botonContinuar != null)
+        {
+            botonContinuar.onClick.AddListener(() => OnContinuarSolicitado?.Invoke());
+        }
     }
 
     private void OnDestroy()
     {
         if (botonJugar != null) botonJugar.onClick.RemoveAllListeners();
         if (botonSeleccionarIdioma != null) botonSeleccionarIdioma.onClick.RemoveAllListeners();
+        if (botonContinuar != null) botonContinuar.onClick.RemoveAllListeners();
     }
 
     public void Mostrar()
     {
         if (panelMenu != null) panelMenu.SetActive(true);
     }
+    public void MostrarContinuar(bool visible) => botonContinuar.gameObject.SetActive(visible);
 
     public void Ocultar()
     {
         if (panelMenu != null) panelMenu.SetActive(false);
     }
 
-    public void EstablecerTextos(string textoJugar, string textoSeleccionarIdioma)
+    public void EstablecerTextos(string textoJugar, string textoSeleccionarIdioma, string continuar)
     {
-        if (labelJugar != null) labelJugar.text = textoJugar;
-        if (labelSeleccionarIdioma != null) labelSeleccionarIdioma.text = textoSeleccionarIdioma;
+        if (labelJugar != null) 
+            labelJugar.text = textoJugar;
+        if (labelSeleccionarIdioma != null) 
+            labelSeleccionarIdioma.text = textoSeleccionarIdioma;
+        if (labelContinuar != null) 
+            labelContinuar.text = continuar;
     }
 }
 

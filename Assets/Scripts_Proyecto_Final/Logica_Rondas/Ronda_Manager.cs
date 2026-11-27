@@ -11,6 +11,7 @@ public class Ronda_Manager
     readonly Cargador_Rondas cargador;
     readonly Estadisticas stats;
     readonly Controlador_Trivia trivia;
+    public Tienda tienda;
     int ultimoSegundoMostrado = -1;
     public int Numero => numero;
     public Ronda Ronda_Actual => ronda;
@@ -22,11 +23,12 @@ public class Ronda_Manager
     public Fase Fase { get; private set; }
 
 
-    public Ronda_Manager(Cargador_Rondas cargador, Estadisticas stats, Controlador_Trivia trivia)
+    public Ronda_Manager(Cargador_Rondas cargador, Estadisticas stats, Controlador_Trivia trivia, Tienda tienda)
     {
         this.cargador = cargador;
         this.stats = stats;
         this.trivia = trivia;
+        this.tienda = tienda;
     }
 
     public void Iniciar_Partida()
@@ -44,6 +46,8 @@ public class Ronda_Manager
 
         Fase = Fase.Batalla;
         Debug.Log($"Ronda {numero}: horda de {datos.CantidadHorda}, impuesto {datos.Impuesto}");
+    
+        Guardar_Progreso();
     }
 
     public void Actualizar(float dt)
@@ -143,6 +147,24 @@ public class Ronda_Manager
         Fase = Fase.FinJuego;
         Debug.Log("Bancarrota: no alcanzaron las monedas para pagar el impuesto.");
         return false;
+    }
+    void Guardar_Progreso()
+    {
+        Servicio_Guardado.Guardar(new Datos_A_Cargar()
+        {
+            ronda = numero,
+            dinero = stats.Obtener_Monedas(),
+            proximoImpuesto = Tienda.Monto_Proximo_Impuesto(numero),
+            nivelesMejoras = tienda.Obtener_Niveles()
+        });
+    }
+
+    public void Continuar_Partida(Datos_A_Cargar d)
+    {
+        numero = d.ronda;
+        tienda.Restaurar_Niveles(d.nivelesMejoras);   
+        stats.monedas_actuales = d.dinero;           
+        Iniciar_Ronda();                              
     }
 
 }

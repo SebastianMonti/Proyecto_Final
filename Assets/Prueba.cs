@@ -33,68 +33,43 @@ public class Prueba : MonoBehaviour
         Personaje personaje = new Personaje(celda, tablero, controlador_Entidades);
         celda.Establecer_Entidad(personaje);
 
-        controladorExplosiones = new Controlador_Explosiones(
-            estadisticas,
-            personaje,
-            tablero,
-            controlador_Entidades
-        );
+        controladorExplosiones = new Controlador_Explosiones(estadisticas, personaje, tablero, controlador_Entidades);
         controladorExplosiones.Pausado = true;
 
         Fabrica_Enemigos fabrica = new Fabrica_Enemigos(tablero, generadorMonedas, controlador_Entidades, personaje);
         Cargador_Rondas cargador = new Cargador_Rondas(fabrica, tablero);
-
         Controlador_Trivia trivia = new Controlador_Trivia(new Banco_Preguntas_Local());
-        manager = new Ronda_Manager(cargador, estadisticas, trivia);
+
+        Tienda tienda = new Tienda(estadisticas);                       // UNA sola tienda
+        manager = new Ronda_Manager(cargador, estadisticas, trivia, tienda);
         manager.generadorMonedas = generadorMonedas;
 
-        // Presentador del HUD de batalla (plata, ronda y tiempo)
-        if (vistaTiempoRonda == null)
-        {
-            vistaTiempoRonda = FindObjectOfType<Vista_Tiempo_Ronda>(true);
-        }
-        if (vistaTiempoRonda != null)
-        {
-            presentadorJugando = new Presentador_Jugando(manager, estadisticas, vistaTiempoRonda);
-        }
-        else
-        {
-            Debug.LogWarning("No se encontró Vista_Tiempo_Ronda en la escena.");
-        }
-
-        // 1. Menú Principal
+        // Menú
         GameObject prefabMenu = Resources.Load<GameObject>("Vista_Esqueleto/Menu_Principal");
         if (prefabMenu != null)
         {
             GameObject menuObj = Instantiate(prefabMenu);
+            Canvas canvasMenu = menuObj.GetComponentInChildren<Canvas>(true);
+            if (canvasMenu != null) canvasMenu.sortingOrder = 100;
             Vista_Menu vistaMenu = menuObj.GetComponentInChildren<Vista_Menu>(true);
             Vista_Seleccionar_Idioma vistaIdioma = menuObj.GetComponentInChildren<Vista_Seleccionar_Idioma>(true);
-
             presentadorMenu = new Presentador_Menu(vistaMenu, vistaIdioma, manager);
-            presentadorMenu.OnPartidaIniciada += () => controladorExplosiones.Pausado = false;
         }
 
-
-        //juego 
+        // HUD de batalla
         GameObject prefabBatalla = Resources.Load<GameObject>("Vista_Esqueleto/Batalla");
         if (prefabBatalla != null)
         {
             GameObject batallaObj = Instantiate(prefabBatalla);
             Vista_Tiempo_Ronda vistaBatalla = batallaObj.GetComponentInChildren<Vista_Tiempo_Ronda>(true);
             if (vistaBatalla != null)
-            {
                 presentadorJugando = new Presentador_Jugando(manager, estadisticas, vistaBatalla);
-            }
             else
-            {
-                Debug.LogWarning("El prefab Batalla no tiene componente Vista_Tiempo_Ronda.");
-            }
+                Debug.LogWarning("El prefab Batalla no tiene Vista_Tiempo_Ronda.");
         }
-        else
-        {
-            Debug.LogError("No se encontró Resources/Vista_Esqueleto/Batalla");
-        }
-        // 2. Trivia
+        else Debug.LogError("No se encontró Resources/Vista_Esqueleto/Batalla");
+
+        // Trivia
         GameObject prefabTrivia = Resources.Load<GameObject>("Vista_Esqueleto/Panel_Trivia");
         if (prefabTrivia != null)
         {
@@ -103,8 +78,7 @@ public class Prueba : MonoBehaviour
             presentadorTrivia = new Presentador_Trivia(trivia, manager, vistaTrivia);
         }
 
-        // 3. Tienda
-        Tienda tienda = new Tienda(estadisticas);
+        // Tienda (misma instancia de arriba)
         GameObject prefabTienda = Resources.Load<GameObject>("Vista_Esqueleto/Panel_Tienda");
         if (prefabTienda != null)
         {
@@ -112,12 +86,9 @@ public class Prueba : MonoBehaviour
             Vista_Tienda vistaTienda = tiendaObj.GetComponentInChildren<Vista_Tienda>(true);
             presentadorTienda = new Presentador_Tienda(tienda, estadisticas, manager, vistaTienda);
         }
-        else
-        {
-            Debug.LogError("No se encontró Resources/Vista_Esqueleto/Panel_Tienda");
-        }
+        else Debug.LogError("No se encontró Resources/Vista_Esqueleto/Panel_Tienda");
 
-        // 4. Impuestos
+        // Impuestos
         GameObject prefabImpuestos = Resources.Load<GameObject>("Vista_Esqueleto/Panel_Impuestos");
         if (prefabImpuestos != null)
         {
@@ -125,29 +96,20 @@ public class Prueba : MonoBehaviour
             Vista_Impuestos vistaImpuestos = impuestosObj.GetComponentInChildren<Vista_Impuestos>(true);
             presentadorImpuestos = new Presentador_Impuestos(manager, vistaImpuestos);
         }
-        else
-        {
-            Debug.LogError("No se encontró Resources/Vista_Esqueleto/Panel_Impuestos");
-        }
+        else Debug.LogError("No se encontró Resources/Vista_Esqueleto/Panel_Impuestos");
 
-        // 5. Fin de Juego
+        // Fin de juego
         GameObject prefabFinJuego = Resources.Load<GameObject>("Vista_Esqueleto/Panel_Fin_Juego");
         if (prefabFinJuego != null)
         {
             GameObject finObj = Instantiate(prefabFinJuego);
             Vista_Fin_Juego vistaFinJuego = finObj.GetComponentInChildren<Vista_Fin_Juego>(true);
             presentadorFinJuego = new Presentador_Fin_Juego(
-                manager,
-                vistaFinJuego,
-                () => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex)
-            );
+                manager, vistaFinJuego,
+                () => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex));
         }
-        else
-        {
-            Debug.LogError("No se encontró Resources/Vista_Esqueleto/Panel_Fin_Juego");
-        }
+        else Debug.LogError("No se encontró Resources/Vista_Esqueleto/Panel_Fin_Juego");
     }
-
     void Update()
     {
         manager.Actualizar(Time.deltaTime);

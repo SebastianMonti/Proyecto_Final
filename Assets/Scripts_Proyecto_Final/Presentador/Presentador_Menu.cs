@@ -28,6 +28,8 @@ public class Presentador_Menu
         {
             _vistaMenu.OnJugarSolicitado += ManejarJugar;
             _vistaMenu.OnSeleccionarIdiomaSolicitado += ManejarSeleccionarIdioma;
+            _vistaMenu.OnContinuarSolicitado += ManejarContinuar;
+           
         }
 
         if (_vistaIdioma != null)
@@ -69,21 +71,29 @@ public class Presentador_Menu
             Debug.LogWarning("Presentador_Menu: no está asignada Vista_Seleccionar_Idioma.");
         }
     }
-
+    private void ManejarContinuar()
+    {
+        var datos = Servicio_Guardado.Cargar();
+        Debug.Log($"Continuar: datos null = {datos == null}");
+        if (datos == null) { RefrescarContinuar(); return; }   // dato inválido o corrupto
+        _vistaMenu?.Ocultar();
+        _rondaManager.Continuar_Partida(datos);
+    }
     private void ManejarVolverAlMenu()
     {
         _vistaIdioma?.Ocultar();
         ActualizarTextosMenu();
         _vistaMenu?.Mostrar();
     }
-
+    void RefrescarContinuar() => _vistaMenu?.MostrarContinuar(Servicio_Guardado.Existe_Partida());
     public void ActualizarTextosMenu()
     {
         if (_vistaMenu == null || Servicio_Localizacion.Instancia == null) return;
 
         string textoJugar = Servicio_Localizacion.Instancia.Obtener("menu.nueva_partida");
         string textoIdioma = Servicio_Localizacion.Instancia.Obtener("menu.idioma");
-        _vistaMenu.EstablecerTextos(textoJugar, textoIdioma);
+        string textoContinuar = Servicio_Localizacion.Instancia.Obtener("menu.continuar");
+        _vistaMenu.EstablecerTextos(textoJugar, textoIdioma, textoContinuar);
     }
 
     public void Dispose()
@@ -92,6 +102,7 @@ public class Presentador_Menu
         {
             _vistaMenu.OnJugarSolicitado -= ManejarJugar;
             _vistaMenu.OnSeleccionarIdiomaSolicitado -= ManejarSeleccionarIdioma;
+            _vistaMenu.OnContinuarSolicitado -= ManejarContinuar;
         }
 
         if (_vistaIdioma != null)
