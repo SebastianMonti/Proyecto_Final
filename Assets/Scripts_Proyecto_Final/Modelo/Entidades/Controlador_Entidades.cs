@@ -43,6 +43,9 @@ public class Controlador_Entidades
 
         controlador_colisiones.Registrar_Colision<Explosion, Enemigo_Fantasma>(
             Colision_Explosion_Enemigo);
+
+        controlador_colisiones.Registrar_Colision<Explosion, Enemigo_Alfil>(
+            Colision_Explosion_Enemigo);
     }
 
     public void Chequear_Colision(Entidad movil, Celda celda)

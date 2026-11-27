@@ -14,14 +14,14 @@ using System.Collections.Generic;
             this.ancho_x = 20;
             this.ancho_z = 20;
 
-            // Inicialización de la matriz
+            // Inicializaciï¿½n de la matriz
             tablero = new Celda[ancho_x, ancho_z];
 
             for (int i = 0; i < ancho_x; i++)
             {
                 for (int j = 0; j < ancho_z; j++)
                 {
-                    // Le pasamos i, j para que la celda sepa su posición
+                    // Le pasamos i, j para que la celda sepa su posiciï¿½n
                     tablero[i, j] = new Celda(i, j);
                 }
             }
@@ -29,12 +29,12 @@ using System.Collections.Generic;
 
         public Celda Obtener_Celda(int x, int z)
         {
-            // Verificamos que las coordenadas estén dentro de los límites de la matriz
+            // Verificamos que las coordenadas estï¿½n dentro de los lï¿½mites de la matriz
             if (x >= 0 && x < ancho_x && z >= 0 && z < ancho_z)
             {
                 return tablero[x, z];
             }
-            return null; // Si está fuera de los límites
+            return null; // Si estï¿½ fuera de los lï¿½mites
         }
 
         public List<Celda> Obtener_Celdas_Libres()
@@ -58,7 +58,7 @@ using System.Collections.Generic;
         {
             if (origen == null) return null;
 
-            // 1. Primero revisamos la misma celda donde murió el enemigo
+            // 1. Primero revisamos la misma celda donde muriï¿½ el enemigo
             if (origen.Esta_Libre())
             {
                 return origen;
@@ -75,7 +75,7 @@ using System.Collections.Generic;
                 {
                     for (int dz = -radio; dz <= radio; dz++)
                     {
-                        // Evaluamos solo el perímetro del anillo actual
+                        // Evaluamos solo el perï¿½metro del anillo actual
                         if (System.Math.Abs(dx) != radio && System.Math.Abs(dz) != radio)
                         {
                             continue;
@@ -96,7 +96,7 @@ using System.Collections.Generic;
                 }
             }
 
-            return null; // El tablero está completamente lleno
+            return null; // El tablero estï¿½ completamente lleno
         }
     public Celda Obtener_Celda_Moneda_Mas_Cercana(Celda origen)
     {
@@ -165,10 +165,10 @@ using System.Collections.Generic;
             int cx = centro.Obtener_Posicion_X();
             int cz = centro.Obtener_Posicion_Z();
 
-            // 1. Agregamos la celda central (donde está parado el personaje)
+            // 1. Agregamos la celda central (donde estï¿½ parado el personaje)
             celdasAfectadas.Add(centro);
 
-            // 2. Extendemos los 4 brazos según el valor de 'radio'
+            // 2. Extendemos los 4 brazos segï¿½n el valor de 'radio'
             // Direcciones: Derecha (1,0), Izquierda (-1,0), Arriba (0,1), Abajo (0,-1)
             int[] dirX = { 1, -1, 0, 0 };
             int[] dirZ = { 0, 0, 1, -1 };
@@ -180,7 +180,7 @@ using System.Collections.Generic;
                     int nx = cx + dirX[d] * paso;
                     int nz = cz + dirZ[d] * paso;
 
-                    // Verificamos que no se salga de los límites de la grilla
+                    // Verificamos que no se salga de los lï¿½mites de la grilla
                     if (!Esta_Dentro_Del_Tablero(nx, nz))
                     {
                         break; // Cortamos este brazo si llegamos al borde
@@ -206,5 +206,34 @@ using System.Collections.Generic;
         public int Obtener_Ancho_Z()
         {
                 return ancho_z;
+        }
+
+        public List<Celda> Obtener_Celdas_Vecinas_Diagonales(Celda celda)
+        {
+            List<Celda> vecinas = new List<Celda>();
+            if (celda == null)
+            {
+                return vecinas;
+            }
+
+            int x = celda.Obtener_Posicion_X();
+            int z = celda.Obtener_Posicion_Z();
+            Celda[] candidatas =
+            {
+                Obtener_Celda(x + 1, z + 1),
+                Obtener_Celda(x - 1, z + 1),
+                Obtener_Celda(x + 1, z - 1),
+                Obtener_Celda(x - 1, z - 1)
+            };
+
+            foreach (Celda candidata in candidatas)
+            {
+                if (candidata != null)
+                {
+                    vecinas.Add(candidata);
+                }
+            }
+
+            return vecinas;
         }
     }
